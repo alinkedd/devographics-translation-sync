@@ -1,0 +1,21 @@
+{
+  "name": "devographics-translation-sync",
+  "version": "0.0.1",
+  "description": "help tool for syncing translation files in devographics repositories",
+  "author": "Alina Listunova <alina.listunova@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "main": "index.js",
+  "browser": false,
+  "private": true,
+  "scripts": {
+    "sync": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "yaml": "^2.3.4"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}
