@@ -42,7 +42,7 @@ function syncTranslations(fileName, baseLocale, dictLocale) {
   });
 
   // Write to dict file
-  writeFileSync(dict, doc.toString(), 'utf-8');
+  writeFileSync(dict, doc.toString({ lineWidth: 0 }), 'utf-8');
 }
 
 syncTranslations('state_of_js.yml', 'en-US', 'ua-UA');
