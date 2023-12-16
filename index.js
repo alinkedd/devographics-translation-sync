@@ -35,9 +35,9 @@ function syncTranslations(fileName, baseLocale, dictLocale) {
 
   // Update t in translations
   doc.get('translations').items.forEach(item => {
-    const key = item.get('key');
-    if (translations.has(key)) {
-      item.set('t', translations.get(key))
+    const t = translations.get(item.get('key'));
+    if (t) {
+      item.set('t', t)
     }
   });
 
