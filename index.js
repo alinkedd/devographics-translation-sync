@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from 'node:fs';
+import { copyFileSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse, parseDocument } from 'yaml';
 
@@ -16,9 +16,22 @@ function syncTranslations(fileName, baseLocale, dictLocale) {
   const base = join('..', `locale-${baseLocale}`, fileName);
   const dict = join('..', `locale-${dictLocale}`, fileName);
 
+  // Read dict file if it exists
+  let dictFile;
+  try {
+    dictFile = readFileSync(dict, 'utf-8');
+  } catch (e) {
+    if (e.code === 'ENOENT') {
+      copyFileSync(base, dict);
+    } else {
+      console.log(e);
+    }
+    return;
+  }
+
   // Parse dict and make translations a key/value dict
   const { locale, namespace, translations } = parse(
-    readFileSync(dict, 'utf-8'),
+    dictFile,
     (key, value) => key === 'translations'
       ? new Map(value.map(o => [o.key, o.t]))
       : value,
@@ -57,4 +70,4 @@ function syncTranslations(fileName, baseLocale, dictLocale) {
   writeFileSync(dict, data, 'utf-8');
 }
 
-syncTranslations('state_of_js.yml', 'en-US', 'ua-UA');
+syncTranslations('state_of_js_2023.yml', 'en-US', 'ua-UA');
