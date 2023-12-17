@@ -13,8 +13,8 @@ import { parse, parseDocument } from 'yaml';
  * @param {string} dictLocale - locale of the file to update
  */ 
 function syncTranslations(fileName, baseLocale, dictLocale) {
-  const base = join(`..`, `locale-${baseLocale}`, fileName);
-  const dict = join(`..`, `locale-${dictLocale}`, fileName);
+  const base = join('..', `locale-${baseLocale}`, fileName);
+  const dict = join('..', `locale-${dictLocale}`, fileName);
 
   // Parse dict and make translations a key/value dict
   const { locale, namespace, translations } = parse(
@@ -49,7 +49,7 @@ function syncTranslations(fileName, baseLocale, dictLocale) {
       const offset = line.match(/^\s*/) ? line.match(/^\s*/)[0] : '';
       // Per line: text + 2 spaces + text => text + space + \n + offset + text
       // (2 spaces is result of additional space and transformed newline)
-      return line.replace(/(\S)(  )(\S)/g, `$1 \n${offset}$3`);
+      return line.replace(/(\S)( {2})(\S)/g, `$1 \n${offset}$3`);
     })
     .join('\n');
 
