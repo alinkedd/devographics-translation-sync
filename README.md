@@ -52,10 +52,10 @@ during parsing;
 - double quote is used by default for text wrapping instead of single quote;
 - some wrapping quotes may be removed if they are unnecessary;
 - paragraphs in folded multiline blocks may become one line,
-[explanation](###folded-block).
+[explanation](#folded-block).
 
 These effects should not happen later as file will become valid (except for
-[known bugs](###known-bugs-in-base-files))
+[known bugs](#known-bugs-in-base-files))
 
 ### Folded block
 
