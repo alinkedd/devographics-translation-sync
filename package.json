@@ -1,6 +1,6 @@
 {
   "name": "devographics-translation-sync",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "help tool for syncing translation files in devographics repositories",
   "author": "Alina Listunova <alina.listunova@gmail.com>",
   "license": "MIT",
