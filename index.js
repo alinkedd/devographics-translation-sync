@@ -2,17 +2,21 @@ import { copyFileSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse, parseDocument } from 'yaml';
 
+// eslint-disable-next-line no-undef
+const baseLocale = process.env.BASE_LOCALE;
+// eslint-disable-next-line no-undef
+const dictLocale = process.env.DICT_LOCALE;
+// eslint-disable-next-line no-undef
+const fileName = process.env.FILE_NAME;
+
 /**
  * Simple translation file synchronization for `Devographics`.
  * 
- * Locales should be same to the ones in locale repository names.
  * Files should be small enough to parse and keep them in memory.
- * 
- * @param {string} fileName - `yml` file name in repository
- * @param {string} baseLocale - locale of the original file
- * @param {string} dictLocale - locale of the file to update
  */ 
-function syncTranslations(fileName, baseLocale, dictLocale) {
+function syncTranslations() {
+  if (!baseLocale || !dictLocale || !fileName) return;
+
   const base = join('..', `locale-${baseLocale}`, fileName);
   const dict = join('..', `locale-${dictLocale}`, fileName);
 
@@ -70,4 +74,4 @@ function syncTranslations(fileName, baseLocale, dictLocale) {
   writeFileSync(dict, data, 'utf-8');
 }
 
-syncTranslations('state_of_js_2023.yml', 'en-US', 'ua-UA');
+syncTranslations();

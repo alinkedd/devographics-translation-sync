@@ -29,6 +29,16 @@ Install dependencies:
 npm install
 ```
 
+#### env
+
+Create an environment file by example:
+
+```sh
+cp .env.example .env
+```
+
+Update locales and file name in `.env` file up to your needs before syncing.
+
 #### sync
 
 Run this command to update `state_of_js.yml` file in `locale-ua-UA` repo,
@@ -38,10 +48,14 @@ basing on the file of the same name in `locale-en-US` repo:
 npm run sync
 ```
 
-Update locales and file name in `index.js` file up to your needs and run
-command again.
-
 If file is missing in your repo, the base file will be copied.
+
+Also you can either update locales and file name in `.env` file or set/override
+them from terminal:
+
+```sh
+FILE_NAME=state_of_js.yml BASE_LOCALE=en-US DICT_LOCALE=ua-UA npm run sync
+```
 
 #### lint and format
 
