@@ -29,16 +29,13 @@ function syncTranslations(fileName, baseLocale, dictLocale) {
 
   // Update locale and namespace
   doc.set('locale', locale);
-  if (namespace) {
-    doc.set('namespace', namespace);
-  }
+  if (namespace) doc.set('namespace', namespace);
 
   // Update t in translations
   doc.get('translations').items.forEach(item => {
     const t = translations.get(item.get('key'));
-    if (t) {
-      item.set('t', t)
-    }
+    // t is empty for missing key or one with aliasFor
+    if (t) item.set('t', t);
   });
 
   // Construct output without a limit for the folded blocks
