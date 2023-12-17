@@ -41,8 +41,23 @@ function syncTranslations(fileName, baseLocale, dictLocale) {
     }
   });
 
+  // Construct output without a limit for the folded blocks
+  const output = doc.toString({ lineWidth: 0 });
+
+  // Retain the original formatting for the folded blocks
+  const data = output
+    .split('\n')
+    .map(line => {
+      // Extract leading spaces
+      const offset = line.match(/^\s*/) ? line.match(/^\s*/)[0] : '';
+      // Per line: text + 2 spaces + text => text + space + \n + offset + text
+      // (2 spaces is result of additional space and transformed newline)
+      return line.replace(/(\S)(  )(\S)/g, `$1 \n${offset}$3`);
+    })
+    .join('\n');
+
   // Write to dict file
-  writeFileSync(dict, doc.toString({ lineWidth: 0 }), 'utf-8');
+  writeFileSync(dict, data, 'utf-8');
 }
 
 syncTranslations('state_of_js.yml', 'en-US', 'ua-UA');
