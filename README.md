@@ -53,14 +53,16 @@ basing on the file of the same name in `locale-en-US` repo:
 npm run sync
 ```
 
-If file is missing in your repo, the base file will be copied.
-
 Also you can either update locales and file name in `.env` file or set/override
 them from terminal:
 
 ```sh
 FILE_NAME=state_of_js.yml BASE_LOCALE=en-US DICT_LOCALE=ua-UA npm run sync
 ```
+
+- If file is missing in your repo, the base file will be copied.
+- All untranslated values will be also extracted into `untranslated-[FILE_NAME]`
+file in target repository so you can easily send it to translation services.
 
 #### lint and format
 

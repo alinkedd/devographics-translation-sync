@@ -1,6 +1,6 @@
 import { copyFileSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { parse, parseDocument } from 'yaml';
+import { parse, parseDocument, stringify } from 'yaml';
 
 // eslint-disable-next-line no-undef
 const baseLocale = process.env.BASE_LOCALE;
@@ -19,6 +19,7 @@ function syncTranslations() {
 
   const base = join('..', `locale-${baseLocale}`, fileName);
   const dict = join('..', `locale-${dictLocale}`, fileName);
+  const untr = join('..', `locale-${dictLocale}`, `untranslated-${fileName}`);
 
   // Read dict file if it exists
   let dictFile;
@@ -48,15 +49,17 @@ function syncTranslations() {
   doc.set('locale', locale);
   if (namespace) doc.set('namespace', namespace);
 
-  // Update t in translations
+  // Update t in translations and create list of untranslated texts
+  const untranslated = [];
   doc.get('translations').items.forEach(item => {
     const t = translations.get(item.get('key'));
     // t is empty for missing key or one with aliasFor
     if (t) item.set('t', t);
+    else if (item.has('t')) untranslated.push(item.get('t'));
   });
 
   // Construct output without a limit for the folded blocks
-  const output = doc.toString({ lineWidth: 0 });
+  const output = stringify(doc, { lineWidth: 0 });
 
   // Retain the original formatting for the folded blocks
   const data = output
@@ -72,6 +75,9 @@ function syncTranslations() {
 
   // Write to dict file
   writeFileSync(dict, data, 'utf-8');
+
+  // Write list of untranslated texts
+  writeFileSync(untr, stringify(untranslated, { lineWidth: 0 }), 'utf-8');
 }
 
 syncTranslations();
