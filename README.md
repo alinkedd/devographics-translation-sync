@@ -41,6 +41,14 @@ npm run sync
 Update locales and file name in `index.js` file up to your needs and run
 command again.
 
+#### lint and format
+
+Run this command to lint `js` files (and format in a simple way):
+
+```sh
+npm run lint
+```
+
 ## Caveats
 
 ### First syncing
