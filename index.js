@@ -77,7 +77,9 @@ function syncTranslations() {
   writeFileSync(dict, data, 'utf-8');
 
   // Write list of untranslated texts
-  writeFileSync(untr, stringify(untranslated, { lineWidth: 0 }), 'utf-8');
+  if (untranslated.lenth) {
+    writeFileSync(untr, stringify(untranslated, { lineWidth: 0 }), 'utf-8');
+  }
 }
 
 syncTranslations();
