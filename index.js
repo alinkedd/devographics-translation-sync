@@ -52,10 +52,12 @@ function syncTranslations() {
   // Update t in translations and create list of untranslated texts
   const untranslated = [];
   doc.get('translations').items.forEach(item => {
-    const t = translations.get(item.get('key'));
-    // t is empty for missing key or one with aliasFor
-    if (t) item.set('t', t);
-    else if (item.has('t')) untranslated.push(item.get('t'));
+    if (item.has('t')) {
+      const t = translations.get(item.get('key'));
+      if (t) item.set('t', t);
+      // t is empty for missing key
+      else untranslated.push(item.get('t'));
+    }
   });
 
   // Construct output without a limit for the folded blocks
