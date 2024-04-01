@@ -128,6 +128,7 @@ There are bugs which require manual editing in files after syncing:
 - double `general.js2023.survey_intro` keys in `surveys` file
 - double `user_info.other_surveys.question` keys in `common` file
 - double `user_info.disability_status.question` keys in `common` file
+- double `charts.freeform_data` keys in `results` file
 - `Winner:` value at wrong level in `surveys` file
 - double `options.top_currently_missing_from_js.static_typing` keys in `state_of_js` file
 - double `options.top_currently_missing_from_js.standard_library` keys in `state_of_js` file
