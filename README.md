@@ -4,6 +4,9 @@ It's a tool to sync files in [Devographics](https://github.com/Devographics)
 repositories with translations for "State of" projects. You can easily update
 translation file in target repository based on the original one.
 
+*Warning: It's a simple tool to parse and compare files in their current state.
+It does not depend on the git-based history of changes.*
+
 [Here is a list of all repositories](https://github.com/orgs/Devographics/repositories?q=locale-&type=all&language=&sort=name).
 `en-US` locale is considered a base, but it can be any of them as you need.
 
