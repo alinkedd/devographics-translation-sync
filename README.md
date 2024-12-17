@@ -137,6 +137,7 @@ There are bugs which require manual editing in files after syncing:
 - double `options.top_currently_missing_from_js.standard_library` keys in `state_of_js` file
 - double `options.top_currently_missing_from_js.pipe_operator` keys in `state_of_js` file
 - double `options.top_currently_missing_from_js.decorators` keys in `state_of_js` file
+- double `tools.monorepo_tools_ratios.takeaway.js2024` keys in `js2024` file
 
 They [should be fixed](https://github.com/Devographics/locale-en-US/issues/34)
 directly in base files by translators later.
